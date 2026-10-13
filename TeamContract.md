@@ -24,7 +24,7 @@ Instagram.
 * Each teammate agrees to respond to messages in at most how long? 1 day? 2 days? Some other amount of time?  
 48 hours.
 
-* What things should a teammate notify you about? (Examples: if they think they won't be able to meet a deadline, if they have to miss lecture, etc.)\\
+* What things should a teammate notify you about? (Examples: if they think they won't be able to meet a deadline, if they have to miss lecture, etc.)  
 If they're not able to complete their part or struggling with it.  
 If they make a pull request.
 
