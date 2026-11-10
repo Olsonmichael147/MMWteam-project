@@ -24,17 +24,23 @@ A fast paced card game that has 3 phases, a variety of cards with unique abiliti
 
 ### As a person with a short attention span, I want to interact with my cards throughout the phases of the battle.
 
+### As a casual gamer, I want to be able to create an account and login to save my decks
+
 (Add additional user stories as needed.)
 
 ---
 
 ## Use Cases
 
-### The user can queue for a match and will get put in a match when a match is found.
+### The user can queue for a match and will get put in a match when a match is found, matchmaking is based on user's elo
+### Battle card interaction use case: user can click card and perform an available action
+### Battle preparation use case: User can choose a card to play during the preparation phase
+### ...
 
-### The user has an ELO which determines what players the server will prioritize to match them with.
+### Users are required to create an account or login to access game and their data is stored in a database.
 
-### During the three phases of the match, the user can perform actions on/with the cards by clicking things.
+### Deck creation: A user can use a deck creation page to build and save their deck.
+
 
 (Add additional use cases as needed.)
 
