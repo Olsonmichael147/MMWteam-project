@@ -62,13 +62,16 @@ A fast paced card game that has 3 phases, a variety of cards with unique abiliti
 
 ## Entities
 
-### Card*
+### Card
+- HP 
 
-### Field*
+### Field
 
-### Deck*
+### Deck
 
-### User*
+### User
+
+### Game (for server)
 
 
 
