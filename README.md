@@ -62,16 +62,41 @@ A fast paced card game that has 3 phases, a variety of cards with unique abiliti
 
 ## Entities
 
-### Card
-- HP 
+### BattleCard
+- int hp
+- int atk
+- Ability ability
+
+
+### Ability
+- int numFriendly
+- int numEnemy
+- void doAbility(ArrayList of selected cards)
+
 
 ### Field
+- ArrayList<BattleCard> player1Backline
+- ArrayList<BattleCard> player1Frontline
+- BattleCard player1General
+- ArrayList<BattleCard> player2Backline
+- ArrayList<BattleCard> player2Frontline
+- BattleCard player2General
+- ArrayList<BattleCard> graveyard
+
+
 
 ### Deck
+- ArrayList<BattleCard> cards
 
 ### User
+- String username
+- String password
+- ArrayList<Deck> decks
+- int elo
 
-### Game (for server)
+### Game
+- String phase
+- String currentPlayer
 
 
 
