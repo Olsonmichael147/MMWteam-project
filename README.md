@@ -32,14 +32,18 @@ A fast paced card game that has 3 phases, a variety of cards with unique abiliti
 
 ## Use Cases
 
-### The user can queue for a match and will get put in a match when a match is found, matchmaking is based on user's elo
-### Battle card interaction use case: user can click card and perform an available action
-### Battle preparation use case: User can choose a card to play during the preparation phase
+### The user can queue for a match and will get put in a match when a match is found, matchmaking is based on user's elo - Michael M
+### User moves and interactions are sent to their opponent in real time - Michael M
+
+### Battle card interaction use case: user can click card and perform an available action - Michael O
+### Battle preparation use case: User can choose a card to play during the preparation phase - Michael O
 ### ...
 
-### Users are required to create an account or login to access game and their data is stored in a database.
+### Users are required to create an account or login to access game and their data is stored in a database. Will
 
-### Deck creation: A user can use a deck creation page to build and save their deck.
+### Deck creation: A user can use a deck creation page to build and save their deck. Will
+
+### Weather: Weather (From API) changes affect card properties - Will
 
 
 (Add additional use cases as needed.)
