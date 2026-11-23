@@ -39,7 +39,7 @@ public class BattlePanel extends JPanel {
 
     // null where the layout has a gap
     private final Slot[][] slots = new Slot[ROWS][COLS];
-    private CardView selected;
+    private DeckView selected;
 
     public BattlePanel() {
         setLayout(new GridLayout(ROWS, COLS, 10, 10));
@@ -55,11 +55,11 @@ public class BattlePanel extends JPanel {
                 } else if (LAYOUT[r].charAt(c) == 'O'){
                     slots[r][c] = new Slot();
                     add(slots[r][c]);
-                    placeDeck("Opponent Monster Deck", r, c, false);
+                    placeDeck("Opponent Deck", r, c);
                 } else if (LAYOUT[r].charAt(c) == 'Y') {
                     slots[r][c] = new Slot();
                     add(slots[r][c]);
-                    placeDeck("Your Monster Deck", r, c, true);
+                    placeDeck("Your Deck", r, c);
                 }
 
                 else {
@@ -73,17 +73,25 @@ public class BattlePanel extends JPanel {
     }
 
     /** Place a card in a slot (used by the game logic / demo setup). */
-    public void placeCard(int row, int col, String name, int hp, int atk, boolean canAct) {
+    public void placeCard(PrepTurn prepTurn, int row, int col, String name, int hp, int atk, int cost, boolean canAct) {
         if (slots[row][col] == null) {
             throw new IllegalArgumentException("Row " + row + ", col " + col + " is a gap");
         }
+        else if(row == 12 || row == 0){
+            slots[row][col].setCard(new HandView(name, hp, atk, cost));
+        }
+        else{
+            if (prepTurn.getMana() <= cost){
+
+            }
+        }
         slots[row][col].setCard(new CardView(name, hp, atk, canAct));
     }
-    private void placeDeck(String name, int row, int col, boolean blueDeck){
+    private void placeDeck(String name, int row, int col){
         slots[row][col].setCard(new DeckView(name));
     }
 
-    private void select(CardView card) {
+    private void select(HandView card) {
         if (selected != null) {
             selected.refreshBorder();
         }
@@ -98,7 +106,7 @@ public class BattlePanel extends JPanel {
         Slot from = (Slot) selected.getParent();
         from.clearCard();
         target.setCard(selected);
-        CardView moved = selected;
+        DeckView moved = selected;
         selected = null;
         moved.refreshBorder();
     }
@@ -145,8 +153,46 @@ public class BattlePanel extends JPanel {
 
         public DeckView(String name){
             setLayout(new GridLayout(3, 1));
+            setBackground(new Color(12, 67, 67));
+            add(new JLabel(name, SwingConstants.CENTER));
+        }
+        private void refreshBorder(){}
+    }
+
+    private class HandView extends DeckView{
+        private boolean canPlace;
+        private final int costToPlace;
+
+        HandView(String name, int hp, int atk, int costToPlace){
+            super(name);
+            this.canPlace = false;
+            this.costToPlace = costToPlace;
+            setLayout(new GridLayout(3, 1));
             setBackground(new Color(235, 225, 200));
             add(new JLabel(name, SwingConstants.CENTER));
+            add(new JLabel("HP " + hp, SwingConstants.CENTER));
+            add(new JLabel("ATK " + atk, SwingConstants.CENTER));
+            refreshBorder();
+            addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    select(HandView.this);
+                }
+            });
+        }
+
+        public void updateCanPlace(PrepTurn prepTurn){
+            this.canPlace = costToPlace <= prepTurn.getMana();
+        }
+
+        private void refreshBorder() {
+            Color color = IDLE;
+            if (this == selected) {
+                color = SELECTED;
+            } else if (canPlace) {
+                color = CAN_ACT;
+            }
+            setBorder(BorderFactory.createLineBorder(color, 4));
         }
     }
 
@@ -170,7 +216,7 @@ public class BattlePanel extends JPanel {
             });
         }
 
-        void refreshBorder() {
+        private void refreshBorder() {
             Color color = IDLE;
             if (this == selected) {
                 color = SELECTED;
